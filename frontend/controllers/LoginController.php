@@ -8,6 +8,8 @@ use frontend\models\Feeds;
 use frontend\models\StaticVar;
 use Yii;
 
+use app\views\site\index;
+
 /**
  * Statement：用户账号登录
  */
@@ -38,11 +40,12 @@ class LoginController extends \yii\web\Controller
                 //teacher界面
                 if ($model3) {
                    // return $this->redirect(['success']); 
-                   return $this->render('welcome', ['model' => $model3]); 
+                   return $this->render('welcome', ['model' => $model3]);  //修改为跳转到教师阅卷界面
                 }
                 //student界面
                 return $this->render('welcome', ['model' => $model]); 
-                //return $this->redirect(['site/index']); //跳转到主页面
+                //return $this->redirect(['hello/index', ['model' => $model]]);
+                // return $this->redirect(['site/index']); //跳转到主页面
             }
         }
         // return $this->render('_login_form',[

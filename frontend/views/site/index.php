@@ -6,13 +6,18 @@ namespace frontend\controllers;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use backend\models\messageshow;
+
 $this->title = 'My Yii Application';
 $messageshow= new messageshow();
-// $newscom->id=6;
 $sql="select*from messageshow";
 $r=messageshow::findBySql($sql)->asArray()->all();
 ?>
+
+
+
+
 <div class="site-index">
+  
   <div id="headerwrap-2">
     <div class="container">
       <div class="row">
@@ -20,6 +25,10 @@ $r=messageshow::findBySql($sql)->asArray()->all();
       </div>
     </div>
   </div>
+
+
+
+
   <!-- /Headerwrap -->
 
   <!-- Call To Action -->
@@ -33,7 +42,6 @@ $r=messageshow::findBySql($sql)->asArray()->all();
     <!-- /container -->
   </div>
   <!-- /cta -->
-
 
   <!-- Services Section -->
   <div class="container sinfo">

@@ -223,6 +223,7 @@ body {
 
 #headerwrap-2 {
   background: url(../img/header2-bg.jpg) no-repeat center top;
+  /* background: url(../img/header-bg-test1.png) no-repeat center top; */
   margin-top: 0;
   padding-top: 160px;
   text-align: center;
@@ -289,6 +290,7 @@ body {
 #servicewrap h1 {
   color: #fff
 }
+
 
 #testwrap {
   background: url(../img/test-bg.jpg) no-repeat center top;
@@ -684,8 +686,9 @@ body {
   float: left;
   margin-right: 10px
 }
-/* Contact Form */
 
+
+/* Contact Form */
 #contact {
   padding: 40px 0;
 }
