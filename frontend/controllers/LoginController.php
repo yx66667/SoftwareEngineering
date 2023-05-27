@@ -41,8 +41,8 @@ class LoginController extends \yii\web\Controller
                    return $this->render('welcome', ['model' => $model3]); 
                 }
                 //student界面
-                // return $this->render('welcome', ['model' => $model]); 
-                return $this->redirect(['site/index']); //跳转到主页面
+                return $this->render('welcome', ['model' => $model]); 
+                //return $this->redirect(['site/index']); //跳转到主页面
             }
         }
         // return $this->render('_login_form',[
