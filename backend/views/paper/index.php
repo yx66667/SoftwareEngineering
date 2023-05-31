@@ -14,12 +14,13 @@ use yii\widgets\ActiveForm;
     ]
 ]); ?>
 
-    <?= $form->field($model, 'imageFile', [
+    <?= $form->field($model, 'File', [
         'inputOptions' => [
             'class' => 'form-control',
             'multiple' => false
         ]
     ])->fileInput() ?>
+<label class="col-sm-4 control-label" for="uploadform-imagefile"> 上传的文件名称必须为eaxm.pdf</label>
 
     <div class="form-group">
         <div class="col-sm-offset-4 col-sm-8">
@@ -28,3 +29,4 @@ use yii\widgets\ActiveForm;
     </div>
 
 <?php ActiveForm::end() ?>
+<dd><a href="/advanced/backend/web/index.php?r=login/user-admin">返回主页</a></dd>

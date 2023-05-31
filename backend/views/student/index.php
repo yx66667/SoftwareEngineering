@@ -36,5 +36,6 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
     <?php Pjax::end(); ?>
+    <dd><a href="/advanced/backend/web/index.php?r=login/user-admin">返回主页</a></dd>
 
 </div>

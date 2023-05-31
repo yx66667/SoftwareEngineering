@@ -24,5 +24,6 @@ use yii\widgets\ActiveForm;
     </div>
 
     <?php ActiveForm::end(); ?>
+    <dd><a href="/advanced/backend/web/index.php?r=login/user-admin">返回主页</a></dd>
 
 </div>

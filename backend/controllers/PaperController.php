@@ -45,7 +45,7 @@ class PaperController extends Controller
             $model = new UploadForm();
     
             if ($this->request->isPost) {
-                $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+                $model->File = UploadedFile::getInstance($model, 'File');
                 if ($model->upload()) {
                     // 文件上传成功
                     // return $this->render('index');

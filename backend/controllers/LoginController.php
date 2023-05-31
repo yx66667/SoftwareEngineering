@@ -34,7 +34,7 @@ class LoginController extends \yii\web\Controller
             'model' => $model,
         ]);
     }
-
+  
     /**
      * @return mixed
      */
