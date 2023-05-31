@@ -4,8 +4,8 @@ namespace backend\controllers;
 
 use backend\models\UserManage;
 use backend\models\UserManageSearch;
-use backend\models\TeacherSearch;
-use backend\models\Teacher;
+use backend\models\Student2Search;
+use backend\models\Student2;
 
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -17,7 +17,7 @@ use yii\filters\VerbFilter;
  * Date：2023/2/9
  * Statement：后台用户管理
  */
-class UserManageController extends Controller
+class Student2Controller extends Controller
 {
     /**
      * @inheritDoc
@@ -43,7 +43,7 @@ class UserManageController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new UserManageSearch();
+        $searchModel = new Student2Search();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -59,10 +59,10 @@ class UserManageController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($aid, $username)
+    public function actionView($student_name)
     {
         return $this->render('view', [
-            'model' => $this->findModel($aid, $username),
+            'model' => $this->findModel($student_name),
         ]);
     }
 
@@ -73,14 +73,14 @@ class UserManageController extends Controller
      */
     public function actionCreate()
     {
-        $model = new UserManage();
+        $model = new student2();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'aid' => $model->aid, 'username' => $model->username]);
+                return $this->redirect(['view', 'student_name' => $model->student_name]);
             }
         } else {
-            $model->loadDefaultValues();
+            $model->loadDefaultValues();//设置对象属性（也称为属性或变量）的默认值。
         }
 
         return $this->render('create', [
@@ -96,12 +96,12 @@ class UserManageController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($aid, $username)
+    public function actionUpdate($student_name)
     {
-        $model = $this->findModel($aid, $username);
+        $model = $this->findModel($student_name);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'aid' => $model->aid, 'username' => $model->username]);
+            return $this->redirect(['view', 'student_name' => $model->student_name]);
         }
 
         return $this->render('update', [
@@ -117,9 +117,9 @@ class UserManageController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDeleteDefault($aid, $username)
+    public function actionDeleteDefault($student_name)
     {
-        $this->findModel($aid, $username)->delete();
+        $this->findModel($student_name)->delete();
 
         return $this->redirect(['index']);
     }
@@ -129,12 +129,12 @@ class UserManageController extends Controller
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $aid
      * @param string $username
-     * @return UserManage the loaded model
+     * @return student2 the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($aid, $username)
+    protected function findModel($student_name)
     {
-        if (($model = UserManage::findOne(['aid' => $aid, 'username' => $username])) !== null) {
+        if (($model = student2::findOne(['student_name' => $student_name])) !== null) {
             return $model;
         }
 
@@ -147,8 +147,8 @@ class UserManageController extends Controller
      * @param string $username
      * @return void
      */
-    public function actionDelete($aid, $username){
-        $this->actionDeleteDefault($aid, $username);
+    public function actionDelete($student_name){
+        $this->actionDeleteDefault($student_name);
     }
 
 }

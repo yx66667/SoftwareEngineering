@@ -4,8 +4,8 @@ namespace backend\controllers;
 
 use backend\models\UserManage;
 use backend\models\UserManageSearch;
-use backend\models\TeacherSearch;
-use backend\models\Teacher;
+use backend\models\OptionSearch;
+use backend\models\Option;
 
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -17,7 +17,7 @@ use yii\filters\VerbFilter;
  * Date：2023/2/9
  * Statement：后台用户管理
  */
-class UserManageController extends Controller
+class OptionController extends Controller
 {
     /**
      * @inheritDoc
@@ -43,7 +43,7 @@ class UserManageController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new UserManageSearch();
+        $searchModel = new OptionSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -59,10 +59,10 @@ class UserManageController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($aid, $username)
+    public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($aid, $username),
+            'model' => $this->findModel($id),
         ]);
     }
 
@@ -73,11 +73,11 @@ class UserManageController extends Controller
      */
     public function actionCreate()
     {
-        $model = new UserManage();
+        $model = new Option();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'aid' => $model->aid, 'username' => $model->username]);
+                return $this->redirect(['view', 'id' => $model->ID]);
             }
         } else {
             $model->loadDefaultValues();
@@ -96,12 +96,12 @@ class UserManageController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($aid, $username)
+    public function actionUpdate($id)
     {
-        $model = $this->findModel($aid, $username);
+        $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'aid' => $model->aid, 'username' => $model->username]);
+            return $this->redirect(['view', 'id' => $model->ID]);
         }
 
         return $this->render('update', [
@@ -117,9 +117,9 @@ class UserManageController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDeleteDefault($aid, $username)
+    public function actionDeleteDefault($id)
     {
-        $this->findModel($aid, $username)->delete();
+        $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
@@ -129,12 +129,12 @@ class UserManageController extends Controller
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $aid
      * @param string $username
-     * @return UserManage the loaded model
+     * @return Option the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($aid, $username)
+    protected function findModel($id)
     {
-        if (($model = UserManage::findOne(['aid' => $aid, 'username' => $username])) !== null) {
+        if (($model = Option::findOne(['ID' => $id])) !== null) {
             return $model;
         }
 
@@ -147,8 +147,8 @@ class UserManageController extends Controller
      * @param string $username
      * @return void
      */
-    public function actionDelete($aid, $username){
-        $this->actionDeleteDefault($aid, $username);
+    public function actionDelete($id){
+        $this->actionDeleteDefault($id);
     }
 
 }

@@ -18,14 +18,14 @@ use Yii;
  * @property string $username
  * @property string $password
  */
-class UserManage extends \yii\db\ActiveRecord
+class Option extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return '{{%Tc_account}}';
+        return '{{%Trueans}}';
     }
 
     /**
@@ -34,8 +34,8 @@ class UserManage extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'password'], 'required'],
-            [['username', 'password'], 'string', 'max' => 255],
+            [['ID', 'TF'], 'required'],
+            [['ID', 'TF'], 'string', 'max' => 255],
         ];
     }
 
@@ -45,9 +45,8 @@ class UserManage extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'aid' => 'Aid',
-            'username' => 'Username',
-            'password' => 'Password',
+            'ID',
+            'TF',
         ];
     }
 }

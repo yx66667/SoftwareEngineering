@@ -16,7 +16,7 @@ use backend\models\teacher;
 /**
  * UserManageSearch represents the model behind the search form of `backend\models\UserManage`.
  */
-class studentSearch extends student
+class student2Search extends student2
 {
     /**
      * {@inheritdoc}
@@ -24,9 +24,7 @@ class studentSearch extends student
     public function rules()
     {
         return [
-            [['aid'], 'integer'],
-            [['username', 'password'], 'safe'],
-            [['registered'],'integer']
+            [['student_name', 'choice_score','compo_score','trans_score','total_score'], 'safe'],
         ];
     }
 
@@ -48,7 +46,7 @@ class studentSearch extends student
      */
     public function search($params)
     {
-        $query = student::find();
+        $query = student2::find();
 
         // add conditions that should always apply here
 
@@ -71,12 +69,13 @@ class studentSearch extends student
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'aid' => $this->aid,
+            'student_name' => $this->student_name,
         ]);
 
-        $query->andFilterWhere(['like', 'username', $this->username])
-            ->andFilterWhere(['like', 'password', $this->password])
-            ->andFilterWhere(['like', 'registered', $this->registered]);
+        $query->andFilterWhere(['like', 'choice_score', $this->choice_score])
+            ->andFilterWhere(['like', 'compo_score', $this->compo_score])
+            ->andFilterWhere(['like', 'trans_score', $this->trans_score])
+            ->andFilterWhere(['like', 'total_score', $this->total_score]);
 
         return $dataProvider;
     }

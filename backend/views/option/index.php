@@ -10,7 +10,7 @@ use yii\widgets\Pjax;
 $this->title = 'User Manage Panel';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-manage-index">
+<div class="option-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -27,9 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             // ['class' => 'yii\grid\SerialColumn'],
 
-            'aid',
-            'username',
-            'password',
+            'ID',
+            'TF',
             
             ['class' => 'yii\grid\ActionColumn'],
         ],

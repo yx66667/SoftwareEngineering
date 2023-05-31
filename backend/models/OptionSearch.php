@@ -4,19 +4,14 @@ namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\teacher;
+use backend\models\Option;
 
-/**
- * Team：Novas
- * Author：刘嗣旸
- * Date：2023/2/9
- * Statement：后台用户管理
- */
 
-/**
- * UserManageSearch represents the model behind the search form of `backend\models\UserManage`.
+
+/**ID
+ * UserManageSearch represents the model behind the search form of `backend\models\Teacher`.
  */
-class studentSearch extends student
+class OptionSearch extends Option
 {
     /**
      * {@inheritdoc}
@@ -24,9 +19,9 @@ class studentSearch extends student
     public function rules()
     {
         return [
-            [['aid'], 'integer'],
-            [['username', 'password'], 'safe'],
-            [['registered'],'integer']
+            [['ID'], 'integer'],
+            [['TF'], 'integer'],
+
         ];
     }
 
@@ -48,7 +43,7 @@ class studentSearch extends student
      */
     public function search($params)
     {
-        $query = student::find();
+        $query = Option::find();
 
         // add conditions that should always apply here
 
@@ -71,12 +66,10 @@ class studentSearch extends student
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'aid' => $this->aid,
+            'ID' => $this->ID,
         ]);
 
-        $query->andFilterWhere(['like', 'username', $this->username])
-            ->andFilterWhere(['like', 'password', $this->password])
-            ->andFilterWhere(['like', 'registered', $this->registered]);
+        $query->andFilterWhere(['like', 'TF', $this->TF]);
 
         return $dataProvider;
     }

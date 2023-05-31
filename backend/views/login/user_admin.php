@@ -36,8 +36,10 @@ use yii\widgets\DetailView;
                         <h2><b>欢迎！管理员</b>
                             <!-- <?= Html::encode($this->title) ?> -->
                         </h2>
-                        <small><span class="fui-user"></span> Novas | <span class="fui-calendar"></span> Feb 13, 2023 |
-                            <span class="fui-chat"></span> 3 functions</small>
+                        <small><span class="fui-user"></span> 小组名称 <span class="fui-calendar"></span>
+
+
+                            <span class="fui-chat"><?php  echo date("Y-m-d H:i:s", time()+6*60*60);?></span> </small>
                         <br>
                     </div>
                 </div>
@@ -64,26 +66,36 @@ use yii\widgets\DetailView;
             <br>
             <br>
             <br> -->
-            <h3 align="center">进行用户管理</h3>
+            <h3 align="center">进行教师信息管理</h3>
             <br>
             <h3 align="center">
-                <a class="layui-btn layui-btn-blue" href="\advanced\backend\web\index.php?r=user-manage/index">确认</a>
+                <a class="layui-btn layui-btn-blue" href="\advanced\backend\web\index.php?r=teacher/index">确认</a>
             </h3>
             <br>
             <br>
             <br>
-            <h3 align="center">进行新闻添加</h3>
+            <h3 align="center">进行学生报名信息管理</h3>
             <br>
             <h3 align="center">
-                <a class="layui-btn layui-btn-blue" href="\advanced\backend\web\index.php?r=home/newsadd">确认</a>
+                <a class="layui-btn layui-btn-blue" href="\advanced\backend\web\index.php?r=student/index">确认</a>
             </h3>
             <br>
             <br>
             <br>
-            <h3 align="center">进行团队成员信息更新</h3>
+            <h3 align="center">进行学生成绩信息管理</h3>
             <br>
             <h3 align="center">
-                <a class="layui-btn layui-btn-blue" href="\advanced\backend\web\index.php?r=home/messshow">确认</a>
+                <a class="layui-btn layui-btn-blue" href="\advanced\backend\web\index.php?r=student2/index">确认</a>
+            </h3>
+            <br>
+            <br>
+            <br>
+            <h3 align="center">进行试卷管理</h3>
+            <br>
+            <h3 align="center">
+            <a class="layui-btn layui-btn-blue" href="\advanced\backend\web\index.php?r=option/index">设置选择题答案</a>
+
+                <a class="layui-btn layui-btn-blue" href="\advanced\backend\web\index.php?r=paper/index">试卷上传</a>
             </h3>
         </form>
     </div>

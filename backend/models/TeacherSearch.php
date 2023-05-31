@@ -42,14 +42,19 @@ class TeacherSearch extends Teacher
      */
     public function search($params)
     {
-        $query = UserManage::find();
+        $query = Teacher::find();
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 10, // 设置每页显示10条记录
+            ],
+        ]);
         $this->load($params);
 
         if (!$this->validate()) {

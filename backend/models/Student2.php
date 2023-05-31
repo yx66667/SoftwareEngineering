@@ -18,14 +18,14 @@ use Yii;
  * @property string $username
  * @property string $password
  */
-class UserManage extends \yii\db\ActiveRecord
+class student2 extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return '{{%Tc_account}}';
+        return '{{%Testscore}}';
     }
 
     /**
@@ -34,8 +34,8 @@ class UserManage extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'password'], 'required'],
-            [['username', 'password'], 'string', 'max' => 255],
+            [['student_name', 'choice_score','compo_score','trans_score','total_score'], 'required'],
+            [['student_name', 'choice_score','compo_score','trans_score','total_score'], 'string', 'max' => 255],
         ];
     }
 
@@ -45,9 +45,12 @@ class UserManage extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'aid' => 'Aid',
-            'username' => 'Username',
-            'password' => 'Password',
+            'student_name' => 'student_name',
+            'choice_score' => 'choice_score',
+            'compo_score' => 'compo_score',
+            'total_score' => 'total_score',
+            'total_score' => 'total_score',
+
         ];
     }
 }
