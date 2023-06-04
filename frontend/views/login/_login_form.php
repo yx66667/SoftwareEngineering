@@ -33,7 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <?php ActiveForm::end(); ?>
 
-
         <?php if (!$isLoginSuccess && !$isLogin): ?>
             <script>
                 alert("Login failed!");

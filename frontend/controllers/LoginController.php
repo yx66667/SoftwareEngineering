@@ -39,7 +39,7 @@ class LoginController extends \yii\web\Controller
                 Yii::$app->params['username'] = $model->username;
                 //teacher界面
                 if ($model3) {
-                   // return $this->redirect(['success']); 
+                   // return $this->redirect('hello/index', ['model' => $model]); 
                    return $this->render('welcome', ['model' => $model3]);  //修改为跳转到教师阅卷界面
                 }
                 //student界面
@@ -58,23 +58,23 @@ class LoginController extends \yii\web\Controller
         ]);
     }
 
-    public function actionFeed()
-    {
-        $model = new Feeds();
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post())) {
-                $model->username = Yii::$app->request->getQueryParam('username');
-                // date_default_timezone_set('PRC');
-                $model->created_at = time();
-                if($model->save())
-                    return $this->redirect(['feed', 'model' => $model, 'username' => $model->username]);
-            }
-        } else {
-            $model->loadDefaultValues();
-        }
-        return $this->render('feed', [
-            'model' => $model,
-        ]);
-    }
+    // public function actionFeed()
+    // {
+    //     $model = new Feeds();
+    //     if ($this->request->isPost) {
+    //         if ($model->load($this->request->post())) {
+    //             $model->username = Yii::$app->request->getQueryParam('username');
+    //             // date_default_timezone_set('PRC');
+    //             $model->created_at = time();
+    //             if($model->save())
+    //                 return $this->redirect(['feed', 'model' => $model, 'username' => $model->username]);
+    //         }
+    //     } else {
+    //         $model->loadDefaultValues();
+    //     }
+    //     return $this->render('feed', [
+    //         'model' => $model,
+    //     ]);
+    // }
 
 }

@@ -3,6 +3,8 @@ use yii\helpers\Html;
 use yii\widgets\LinkPager;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
+use app\models\Stu_account;
+use frontend\models\Account;
 
 global $num;
 $num = 0;
@@ -17,31 +19,18 @@ $num = 0;
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-        <a class="navbar-brand" href="/advanced/frontend/web/">GOOD</a>
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="dropdown active">
-            <a href="/advanced/frontend/web/">Home</a>
-          </li>
-          <li><a href="/advanced/frontend/web/index.php?r=home/news">News</a></li>
-          <li><a href="/advanced/frontend/web/index.php?r=question/index">Questions</a></li>
-          <!-- <li><a href="/advanced/frontend/web/index.php?r=site/feed& {{ $model->username }}">Message Board</a></li> -->
-          <!-- <li><?=HTML::a('Message Board',['/login/feed', 'username' => $this->title]) ?></li> -->
+          <li><a href="/advanced/frontend/web/">主页</a></li>
+          <li><a href="/advanced/frontend/web/index.php?r=home/news">在线报名</a></li>
+          <li><a href="/advanced/frontend/web/index.php?r=question/index">在线测试</a></li>
+          <li><a href="/advanced/frontend/web/index.php?r=login/login">成绩查询</a></li>
+          <li><a href="/advanced/frontend/web/index.php?r=login/login">教师阅卷</a></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documents <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">登录/注册 <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="statics\doc1.html">需求文档</a></li>
-              <li><a href="statics\doc2.html">设计文档</a></li>
-              <li><a href="statics\doc3.html">实现文档</a></li>
-              <li><a href="statics\doc4.html">用户手册</a></li>
-              <li><a href="statics\doc5.html">部署文档</a></li>
-              <li><a href="statics\doc6.html">项目展示PPT</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
-            <ul class="dropdown-menu">
+              <li><a href="/advanced/backend/web/">切换至后台</a></li>
               <li><a href="/advanced/frontend/web/index.php?r=account/create">Signup</a></li>
               <li><a href="/advanced/frontend/web/index.php?r=login/login">Login</a></li>
               <li><a href="/advanced/frontend/web/">Logout</a></li>
@@ -53,59 +42,46 @@ $num = 0;
     </div>
   </div>
 
-<h1>Questions</h1>
-<img class="img-responsive" src="statics\img\blog-post02.jpg" alt="" style="width:1400px;height:200px;">
-<ul>
-<form method="post"
-action="/advanced/frontend/web/index.php?r=question/answer">
+    <!-- 定义按钮 -->
+     <style> #buttons 
+    { 
+        display: flex; 
+        align-items: center; 
+        justify-content: flex-start; 
+        /* justify-content: center; */
+    } 
+    .container { text-align: left; } 
+    .custom-button { 
+        background-color: blue; 
+        color: white; 
+        padding: 15px 30px; 
+        font-size: 18px; 
+        border: none; cursor: pointer; 
+        transition: background-color 0.3s; 
+    } 
+    .custom-button:hover 
+    { background-color: purple; } 
+    </style> 
 
-<li>
-<p style="font-size:20px;"><?= Html::encode("{$questions[0]->ID} : {$questions[0]->txt}") ?></p>
-</li>
-<p>
-<input type="radio" name="q1" value=1>是
-<input type="radio" name="q1" value=0>否
-<input type="radio" name="q1" value=2 checked="checked">不知道
-</p>
-<li>
-<p style="font-size:20px;"><?= Html::encode("{$questions[1]->ID} : {$questions[1]->txt}") ?></p>
-</li>
-<p>
-<input type="radio" name="q2" value=1>是
-<input type="radio" name="q2" value=0>否
-<input type="radio" name="q2" value=2 checked="checked">不知道
-</p>
-<li>
-<p style="font-size:20px;"><?= Html::encode("{$questions[2]->ID} : {$questions[2]->txt}") ?></p>
-</li>
-<p>
-<input type="radio" name="q3" value=1>是
-<input type="radio" name="q3" value=0>否
-<input type="radio" name="q3" value=2 checked="checked">不知道
-</p>
-<li>
-<p style="font-size:20px;"><?= Html::encode("{$questions[3]->ID} : {$questions[3]->txt}") ?></p>
-</li>
-<p>
-<input type="radio" name="q4" value=1>是
-<input type="radio" name="q4" value=0>否
-<input type="radio" name="q4" value=2 checked="checked">不知道
-</p>
-<li>
-<p style="font-size:20px;"><?= Html::encode("{$questions[4]->ID} : {$questions[4]->txt}") ?></p>
-</li>
-<p>
-<input type="radio" name="q5" value=1>是
-<input type="radio" name="q5" value=0>否
-<input type="radio" name="q5" value=2 checked="checked">不知道
-</p>
 
-<p style="font-size:20px;"><br><input  type="submit" value="发送" class="sub">
-    <input type="hidden" id="_csrf" name="<?PHP echo Yii::$app->request->csrfParam;?>" 
-    value="<?=\Yii::$app->request->csrfToken?>"/></span>
-</p >
-</form>
+<form id="form" method="post"
+action="/advanced/frontend/web/index.php?r=question/question">
+<br>
+<br>
+<br>
+<br>
+<p align="center" style="font-size:24px;">请输入姓名:</p>
+<p align="center"><textarea cols="30" rows="1" name="name1"></textarea> </p>
+<p align="center" style="font-size:24px;">请输入准考证号:</p>
+<p align="center"><textarea cols="30" rows="1" name="testid1"></textarea></br></p>
+<p align="center" style="font-size:20px;">
 
-</ul>
+<p align="center"><span style="font-size: 30px"><input type="submit" value="开始考试" class="sub">
+</br>
+</br>
+</br>
+<input type="hidden" id="_csrf" name="<?PHP echo Yii::$app->request->csrfParam;?>" 
+value="<?=\Yii::$app->request->csrfToken?>"/></span>
+</p>
 
 <?= LinkPager::widget(['pagination' => $pagination]) ?>

@@ -32,30 +32,17 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>
-        <a class="navbar-brand" href="/advanced/frontend/web/">GOOD</a>
+        </button>
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="dropdown active">
-            <a href="/advanced/frontend/web/">Home</a>
-          </li>
-          <li><a href="/advanced/frontend/web/index.php?r=login/login">News</a></li>
-          <li><a href="/advanced/frontend/web/index.php?r=login/login">Questions</a></li>
-          <li><a href="/advanced/frontend/web/index.php?r=login/login">Message Board</a></li>
+          <li><a href="/advanced/frontend/web/">主页</a></li>
+          <li><a href="/advanced/frontend/web/index.php?r=login/login">在线报名</a></li>
+          <li><a href="/advanced/frontend/web/index.php?r=login/login">在线测试</a></li>
+          <li><a href="/advanced/frontend/web/index.php?r=login/login">成绩查询</a></li>
+          <li><a href="/advanced/frontend/web/index.php?r=login/login">教师阅卷</a></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documents <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="statics\doc1.html">需求文档</a></li>
-              <li><a href="statics\doc2.html">设计文档</a></li>
-              <li><a href="statics\doc3.html">实现文档</a></li>
-              <li><a href="statics\doc4.html">用户手册</a></li>
-              <li><a href="statics\doc5.html">部署文档</a></li>
-              <li><a href="statics\doc6.html">项目展示PPT</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">登录/注册 <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><a href="/advanced/backend/web/">切换至后台</a></li>
               <li><a href="/advanced/frontend/web/index.php?r=account/create">Signup</a></li>
@@ -75,8 +62,8 @@
 
   <div id="copyrights">
     <div class="container">
-      <p>Novas小组制作</p>
-      <p> &copy; Copyrights <strong>Good</strong>. All Rights Reserved - <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+      <p>WE小组制作</p>
+      <p> &copy; Copyrights <strong>WE</strong>. All Rights Reserved - <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
       </p>
       <div class="credits">
       </div>

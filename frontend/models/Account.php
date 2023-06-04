@@ -38,6 +38,7 @@ class Account extends \yii\db\ActiveRecord
         return [
             [['username', 'password'], 'required'],
             [['username', 'password'], 'string', 'max' => 255],
+            [['identity_number'], 'integer'],
         ];
     }
 

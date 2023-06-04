@@ -8,22 +8,19 @@ use yii\web\Controller;
 use yii\data\Pagination;
 use app\models\Question;
 use app\models\Trueans;
-
-/**
- * Team：Novas
- * Author：田翔宇
- * Date：2023/2/11
- * Statement：问答互动
- */
+use app\models\Testscore;
+use app\models\Stu_account;
+use frontend\models\Account;
+use Yii;
 
 class QuestionController extends Controller
 {
-    public function actionIndex()
+    public function actionQuestion()
     {
         $query = Question::find();
        
         $pagination = new Pagination([
-            'defaultPageSize' => 5,
+            'defaultPageSize' => 120,
             'totalCount' => $query->count(),
         ]);
 
@@ -33,7 +30,7 @@ class QuestionController extends Controller
             ->all();
 
 
-        return $this->render('index', [
+        return $this->render('question', [
             'questions' => $questions,
             'pagination' => $pagination
         ]);
@@ -44,7 +41,7 @@ class QuestionController extends Controller
         $query = Trueans::find();
 
         $pagination = new Pagination([
-            'defaultPageSize' => 5,
+            'defaultPageSize' => 120,
             'totalCount' => $query->count(),
         ]);
 
@@ -58,6 +55,48 @@ class QuestionController extends Controller
             'pagination' => $pagination
         ]);
     }
+
+    public function actionScore()
+    {
+        $query = Testscore::find();
+
+        $pagination = new Pagination([
+            'defaultPageSize' => 120,
+            'totalCount' => $query->count(),
+        ]);
+
+        $testscore = $query->orderBy('id')
+        ->offset($pagination->offset)
+        ->limit($pagination->limit)
+        ->all();
+
+        return $this->render('question','answer',[
+            'testscore' => $testscore,
+            'pagination' => $pagination
+        ]);
+    }
+
+    public function actionIndex()
+    {
+        $query = Stu_account::find();
+        $stu_account = new Stu_account();
+
+        $pagination = new Pagination([
+            'defaultPageSize' => 120,
+            'totalCount' => $query->count(),
+        ]);
+
+        $testscore = $query->orderBy('aid')
+        ->offset($pagination->offset)
+        ->limit($pagination->limit)
+        ->all();
+
+        return $this->render('index',[
+            'stu_account' => $stu_account,
+            'pagination' => $pagination
+        ]);
+    }
+
 }
 
 
