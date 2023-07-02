@@ -4,6 +4,7 @@ use yii\widgets\LinkPager;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use app\models\Testscore;
+use frontend\models\Score;
 
 global $num;
 $num = 0;
@@ -22,9 +23,9 @@ $num = 0;
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li><a href="/advanced/frontend/web/">主页</a></li>
-          <li><a href="/advanced/frontend/web/index.php?r=home/news">在线报名</a></li>
+          <li><a href="/advanced/frontend/web/index.php?r=register/register">在线报名</a></li>
           <li><a href="/advanced/frontend/web/index.php?r=question/index">在线测试</a></li>
-          <li><a href="/advanced/frontend/web/index.php?r=login/login">成绩查询</a></li>
+          <li><a href="/advanced/frontend/web/index.php?r=score/inquiry">成绩查询</a></li>
           <li><a href="/advanced/frontend/web/index.php?r=login/login">教师阅卷</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">登录/注册 <b class="caret"></b></a>
@@ -49,24 +50,31 @@ $num = 0;
 <form id="form1" method="post"
 action="/advanced/frontend/web/index.php?r=question/answer">
 
-<p align="right" style="font-size:24px;">你还有
+<p align="center" style="font-size:24px;">你还有
 <input type="text" style='font-size:30px; border:18px; width:170px;' 
 readonly="true" value="" id="time">的作答时间
 </p>
-<iframe width="100%" height="900px" src="/advanced/frontend/web/statics/exam.pdf"></iframe>
+<div class="container">
+<div class="col-lg-8 bt-bottom-info ab">
+<iframe width="100%" height="2500px" src="/advanced/frontend/web/statics/exam.pdf"></iframe>
 </br>
+<h3><span style="font-size: 40px">Part I: Writing</h3>
+<p><textarea cols="80" rows="14" name="composition"></textarea></br></br></p>
+</br>
+<h3><span style="font-size: 40px">Part Ⅳ: Translation</h3>
+<p><textarea cols="80" rows="14" name="Translation"></textarea></br></br></p>
+</div>
+<div class="col-lg-4 bt-bottom-info ab">
 <p>
 <?php
-$name=$_POST["name1"];
-$testid=$_POST["testid1"];
+$name=$student->username;
+$testid=$student->eid;
 ?>
 <input type="hidden" name="name" value="<?php echo $name; ?>">
 <input type="hidden" name="testid" value="<?php echo $testid; ?>">
 </p>
-<h3 align="center"><span style="font-size: 40px">Part I: Writing</h3>
-<p align="center"><textarea cols="140" rows="10" name="composition"></textarea></br></br></p>
 
-<h3 align="center"><span style="font-size: 40px">Part II: Listening Comprehension</h3>
+<h3><span style="font-size: 40px">Part II: Listening Comprehension</h3>
 <h4><span style="font-size: 30px">Section A</h4>
 <p>1、
 <input type="radio" name="q1" value=1>A ) 
@@ -223,7 +231,8 @@ $testid=$_POST["testid1"];
 <input type="radio" name="q25" value=4 checked="checked">D ) 
 </p>
 
-<h3 align="center"><span style="font-size: 40px">Part Ⅲ: Reading Comprehension Comprehension</h3>
+</br>
+<h3><span style="font-size: 40px">Part Ⅲ: Reading Comprehension</h3>
 <h4><span style="font-size: 30px">Section A</h4>
 <p>26、
 <input type="radio" name="q26" value=1>A ) 
@@ -617,14 +626,13 @@ $testid=$_POST["testid1"];
 <input type="radio" name="q55" value=3>C ) 
 <input type="radio" name="q55" value=4 checked="checked">D ) 
 </p>
-
-<h3 align="center"><span style="font-size: 40px">Part Ⅳ: Translation</h3>
-<p align="center"><textarea cols="140" rows="10" name="Translation"></textarea></br></br></p>
-
+</br>
 <p align="center"><span style="font-size: 30px"><input type="submit" value="提交试卷！" class="sub">
 <input type="hidden" id="_csrf" name="<?PHP echo Yii::$app->request->csrfParam;?>" 
 value="<?=\Yii::$app->request->csrfToken?>"/></span>
 </p>
+</div>
+</div>
 
 </form>
 </ul>
@@ -646,5 +654,3 @@ function fun()
 }
 var inter = setInterval("fun()",1000);
 </script> 
-
-<?= LinkPager::widget(['pagination' => $pagination]) ?>
