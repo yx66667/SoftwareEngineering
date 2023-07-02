@@ -5,10 +5,6 @@ use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use app\models\Stu_account;
 use frontend\models\Account;
-
-global $num;
-$num = 0;
-
 ?>
 <!-- Fixed navbar -->
 <div class="navbar navbar-default navbar-fixed-top">
@@ -23,9 +19,9 @@ $num = 0;
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li><a href="/advanced/frontend/web/">主页</a></li>
-          <li><a href="/advanced/frontend/web/index.php?r=home/news">在线报名</a></li>
+          <li><a href="/advanced/frontend/web/index.php?r=register/register">在线报名</a></li>
           <li><a href="/advanced/frontend/web/index.php?r=question/index">在线测试</a></li>
-          <li><a href="/advanced/frontend/web/index.php?r=login/login">成绩查询</a></li>
+          <li><a href="/advanced/frontend/web/index.php?r=score/inquiry">成绩查询</a></li>
           <li><a href="/advanced/frontend/web/index.php?r=login/login">教师阅卷</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">登录/注册 <b class="caret"></b></a>
@@ -64,24 +60,19 @@ $num = 0;
     </style> 
 
 
-<form id="form" method="post"
-action="/advanced/frontend/web/index.php?r=question/question">
-<br>
-<br>
-<br>
-<br>
-<p align="center" style="font-size:24px;">请输入姓名:</p>
-<p align="center"><textarea cols="30" rows="1" name="name1"></textarea> </p>
-<p align="center" style="font-size:24px;">请输入准考证号:</p>
-<p align="center"><textarea cols="30" rows="1" name="testid1"></textarea></br></p>
-<p align="center" style="font-size:20px;">
+<h1 align="center" style="font-family: 宋体;">在线测试</h1>
+<h6 align="center" style="font-family: 宋体;">请输入姓名和准考证号</h6>
+<div style="display: flex; justify-content: center; align-items: center; height: 40vh;">
+<?php if (Yii::$app->session->hasFlash('error')): ?>
+    <?= Yii::$app->session->getFlash('error') ?>
+<?php else: ?>
+    <?php $form = ActiveForm::begin(); ?>
+    <?= $form->field($model, 'username')->textInput(['maxlength' => true, 'style' => 'width:400px;']) ?>
+    <?= $form->field($model, 'eid')->passwordInput(['maxlength' => true, 'style' => 'width:400px;']) ?>
 
-<p align="center"><span style="font-size: 30px"><input type="submit" value="开始考试" class="sub">
-</br>
-</br>
-</br>
-<input type="hidden" id="_csrf" name="<?PHP echo Yii::$app->request->csrfParam;?>" 
-value="<?=\Yii::$app->request->csrfToken?>"/></span>
-</p>
-
-<?= LinkPager::widget(['pagination' => $pagination]) ?>
+    <div class="form-group">
+        <?= Html::submitButton('开始考试', ['class' => 'btn btn-primary']) ?>
+    </div>
+    <?php ActiveForm::end(); ?>
+<?php endif; ?>
+</div>
