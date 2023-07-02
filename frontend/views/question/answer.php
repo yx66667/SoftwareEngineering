@@ -23,9 +23,9 @@ $testscore = new Testscore();
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li><a href="/advanced/frontend/web/">主页</a></li>
-          <li><a href="/advanced/frontend/web/index.php?r=home/news">在线报名</a></li>
+          <li><a href="/advanced/frontend/web/index.php?r=register/register">在线报名</a></li>
           <li><a href="/advanced/frontend/web/index.php?r=question/index">在线测试</a></li>
-          <li><a href="/advanced/frontend/web/index.php?r=login/login">成绩查询</a></li>
+          <li><a href="/advanced/frontend/web/index.php?r=score/inquiry">成绩查询</a></li>
           <li><a href="/advanced/frontend/web/index.php?r=login/login">教师阅卷</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">登录/注册 <b class="caret"></b></a>
@@ -1693,5 +1693,3 @@ $testscore->choice_score=$num;
 $data=$testscore->insert();
 ?>
 </p>
-
-<?= LinkPager::widget(['pagination' => $pagination]) ?>
