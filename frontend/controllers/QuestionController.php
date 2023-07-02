@@ -9,8 +9,8 @@ use yii\data\Pagination;
 use app\models\Question;
 use app\models\Trueans;
 use app\models\Testscore;
-use app\models\Stu_account;
 use frontend\models\Account;
+use frontend\models\Score;
 use Yii;
 
 class QuestionController extends Controller
@@ -18,21 +18,11 @@ class QuestionController extends Controller
     public function actionQuestion()
     {
         $query = Question::find();
-       
-        $pagination = new Pagination([
-            'defaultPageSize' => 120,
-            'totalCount' => $query->count(),
-        ]);
 
-        $questions = $query->orderBy('ID')
-            ->offset($pagination->offset)
-            ->limit($pagination->limit)
-            ->all();
-
+        $questions = $query->orderBy('ID')->all();
 
         return $this->render('question', [
-            'questions' => $questions,
-            'pagination' => $pagination
+            'questions' => $questions
         ]);
     }
 
@@ -40,19 +30,10 @@ class QuestionController extends Controller
     {
         $query = Trueans::find();
 
-        $pagination = new Pagination([
-            'defaultPageSize' => 120,
-            'totalCount' => $query->count(),
-        ]);
-
-        $trueans = $query->orderBy('ID')
-        ->offset($pagination->offset)
-        ->limit($pagination->limit)
-        ->all();
+        $trueans = $query->orderBy('ID')->all();
 
         return $this->render('answer',[
             'trueans' => $trueans,
-            'pagination' => $pagination
         ]);
     }
 
@@ -60,41 +41,40 @@ class QuestionController extends Controller
     {
         $query = Testscore::find();
 
-        $pagination = new Pagination([
-            'defaultPageSize' => 120,
-            'totalCount' => $query->count(),
-        ]);
-
-        $testscore = $query->orderBy('id')
-        ->offset($pagination->offset)
-        ->limit($pagination->limit)
-        ->all();
+        $testscore = $query->orderBy('id')->all();
 
         return $this->render('question','answer',[
             'testscore' => $testscore,
-            'pagination' => $pagination
         ]);
     }
 
     public function actionIndex()
     {
-        $query = Stu_account::find();
-        $stu_account = new Stu_account();
-
-        $pagination = new Pagination([
-            'defaultPageSize' => 120,
-            'totalCount' => $query->count(),
-        ]);
-
-        $testscore = $query->orderBy('aid')
-        ->offset($pagination->offset)
-        ->limit($pagination->limit)
-        ->all();
-
-        return $this->render('index',[
-            'stu_account' => $stu_account,
-            'pagination' => $pagination
-        ]);
+        $model = new Account();
+        if ($model->load($this->request->post())) {
+            // 根据学生姓名查询学生信息 尚未考虑同名同姓的情况
+            $student = Account::findOne([
+                'username' => $model->username
+            ]);
+            if ($student && $student->eid == $model->eid) {
+                if($student->registered == 1){
+                    return $this->render('question', ['student' => $student]);
+                }else{
+                // 未缴费
+                Yii::$app->session->setFlash('error', '未缴费！');
+                $model->username='';
+                $model->eid='';
+                }
+            }
+            else {
+                // 学生姓名或考号错误
+                Yii::$app->session->setFlash('error', '学生姓名或考号错误！');
+                $model->username='';
+                $model->eid='';
+            }
+        }
+        
+        return $this->render('index', ['model' => $model]);
     }
 
 }
